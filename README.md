@@ -1,5 +1,5 @@
 #       AUTOBAN SCRIPT
-#       Copyrighted:  Chris Kuehl
+#       Copyrighted:  Chris & m0r3Sh3LLs
 #       #	Version: 1.0
 #
 #    This program is free software: you can redistribute it and/or modify
