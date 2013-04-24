@@ -31,7 +31,8 @@ def startListen(host, port):
 	sock.bind(server_address)
 	print >>sys.stderr, 'starting up on %s port %s' % sock.getsockname()
 	sock.listen(1)
-
+	
+	# Loop forever
 	while True:
 		print >>sys.stderr, 'waiting for a connection'
 		connection, client_address = sock.accept()
@@ -45,23 +46,20 @@ def startListen(host, port):
 				
 				
 				autoBan(ip)
-				#data = connection.recv(16)
-				#print >>sys.stderr, 'received "%s"' % data
-				#if data:
-				#	connection.sendall(data)
-				#else:
 				break
 		finally:
 			connection.close()
-
+			
+# Autoban function # Creates a randomized name for the firewall rule
 def autoBan(host):
 	randomNum=str(random.randrange(1, 1000000))
 	command="netsh advfirewall firewall add rule name=\"BAN"+randomNum+"\" protocol=TCP action=block dir=IN remoteip="+host
 	print command
 	os.system(command)
+	
 ### MAIN APPLICATION ####
 
+#Listen on any interface
 host='0.0.0.0'
 port=22
 startListen(host, port)
-
